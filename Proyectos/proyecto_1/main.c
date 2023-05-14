@@ -134,7 +134,7 @@ void fleer_trbj(FILE* fp, Trabajador* trbj)
     {
         trbj->dep = 2;
     }
-    else if(strstr(buffer, "Diseño")!=NULL)
+    else if(strstr(buffer, "Diseï¿½o")!=NULL)
     {
         trbj->dep = 3;
     }
@@ -163,7 +163,7 @@ void fleer_trbj(FILE* fp, Trabajador* trbj)
     {
         trbj->cargo = 3;
     }
-    else if(strstr(buffer, "Diseñador")!=NULL)
+    else if(strstr(buffer, "Diseï¿½ador")!=NULL)
     {
         trbj->cargo = 4;
     }
@@ -194,10 +194,10 @@ void leer_trbj(Trabajador* trbj)
     printf("Ingrese la fecha de ingreso (dd/mm/aa): ");
     fgets(trbj->fech_ingreso, 10, stdin);
     fflush(stdin);
-    printf("Ingrese el departamento(1:RHH, 2:Consultorio, 3:Diseño, 4:Produccion, 5:Calidad, 6:Distribucion): ");
+    printf("Ingrese el departamento(1:RHH, 2:Consultorio, 3:Diseï¿½o, 4:Produccion, 5:Calidad, 6:Distribucion): ");
     scanf("%i",&(trbj->dep));
     fflush(stdin);
-    printf("Ingrese el cargo(1:Gerente, 2:Supervisor, 3:Analista, 4:Diseñador, 5:Desarrollador, 6:Auditor): ");
+    printf("Ingrese el cargo(1:Gerente, 2:Supervisor, 3:Analista, 4:Diseï¿½ador, 5:Desarrollador, 6:Auditor): ");
     scanf("%i",&(trbj->cargo));
     fflush(stdin);
     printf("Ingrese el sueldo: ");
@@ -231,7 +231,7 @@ void registrar(char* arch, Trabajador* trbj, int sl)
         fputs("Consultorio   ",fp);
         break;
     case 3:
-        fputs("Diseño        ",fp);
+        fputs("Diseï¿½o        ",fp);
         break;
     case 4:
         fputs("Produccion    ",fp);
@@ -255,7 +255,7 @@ void registrar(char* arch, Trabajador* trbj, int sl)
         fputs("Analista      ",fp);
         break;
     case 4:
-        fputs("Diseñador     ",fp);
+        fputs("Diseï¿½ador     ",fp);
         break;
     case 5:
         fputs("Desarrollador ",fp);
@@ -291,7 +291,7 @@ void print_trbj(Trabajador* trbj)
         printf("Consultorio\n");
         break;
     case 3:
-        printf("Diseño\n");
+        printf("Diseï¿½o\n");
         break;
     case 4:
         printf("Produccion\n");
@@ -316,7 +316,7 @@ void print_trbj(Trabajador* trbj)
         printf("Analista\n");
         break;
     case 4:
-        printf("Diseñador\n");
+        printf("Diseï¿½ador\n");
         break;
     case 5:
         printf("Desarrollador\n");
@@ -372,7 +372,7 @@ void print_dep(int dep)
         printf("Consultorio");
         break;
     case 3:
-        printf("Diseño");
+        printf("Diseï¿½o");
         break;
     case 4:
         printf("Produccion");
@@ -401,7 +401,7 @@ void print_cargo(int cargo)
         printf("Analista\n");
         break;
     case 4:
-        printf("Diseñador\n");
+        printf("Diseï¿½ador\n");
         break;
     case 5:
         printf("Desarrollador\n");
@@ -485,7 +485,7 @@ void consultar()
     //Consulta por departamento
     case 'b':
         printf("Ingrese el codigo del departamento.\n");
-        printf("(1:RHH, 2:Consultorio, 3:Diseño, 4:Produccion, 5:Calidad, 6:Distribucion): ");
+        printf("(1:RHH, 2:Consultorio, 3:Diseï¿½o, 4:Produccion, 5:Calidad, 6:Distribucion): ");
 
         do{
             scanf("%d", &aux);
@@ -512,7 +512,7 @@ void consultar()
     //Consulta por cargo
     case 'c':
         printf("Ingrese el codigo del cargo.\n");
-        printf("(1:Gerente, 2:Supervisor, 3:Analista, 4:Diseñador, 5:Desarrollador, 6:Auditor): ");
+        printf("(1:Gerente, 2:Supervisor, 3:Analista, 4:Diseï¿½ador, 5:Desarrollador, 6:Auditor): ");
 
         do{
             scanf("%d", &aux);
@@ -659,7 +659,7 @@ void eliminar()
     printf("Ingrese la cedula de identidad del trabajador a eliminar: ");
     scanf("%d", &ci);
 
-    printf("¿Esta seguro de que desea eliminar a este trabajador? 1:Si/0:No: ");
+    printf("Â¿Esta seguro de que desea eliminar a este trabajador? 1:Si/0:No: ");
     scanf("%d", &op);
 
     if(op)
