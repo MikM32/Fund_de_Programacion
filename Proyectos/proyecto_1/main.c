@@ -446,7 +446,7 @@ void consultar()
     int n= fcontar_char(REGISTRO, '\n');
     trabjs = malloc(n*sizeof(Trabajador));
     FILE* fp;
-    int aux=0, index = -1, cont=0;
+    int aux=0, index = -1, cont=0, i_mayor, i_menor;
     float men_sueldo=0, may_sueldo=0;
     float sueldo_devtotal = 0;
 
@@ -535,7 +535,6 @@ void consultar()
         break;
     //Trabajadores de mayor y menor sueldo
     case 'd':
-        aux = 0;
         men_sueldo = trabjs[0].sueldo;
         may_sueldo = trabjs[0].sueldo;
 
@@ -544,24 +543,17 @@ void consultar()
             if(trabjs[i].sueldo < men_sueldo)
             {
                 men_sueldo = trabjs[i].sueldo;
-                aux = i;
+                i_menor = i;
             }
-        }
-
-        printf("El empleado con menor sueldo es: %s\n", trabjs[aux].nombre);
-
-        aux=0;
-        for(int i = 0; i<n; i++)
-        {
-            if(trabjs[i].sueldo > may_sueldo)
+            else if(trabjs[i].sueldo > may_sueldo)
             {
                 may_sueldo = trabjs[i].sueldo;
-                aux = i;
-
+                i_mayor = i;
             }
         }
 
-        printf("El empleado con mayor sueldo es: %s\n", trabjs[aux].nombre);
+        printf("El empleado con menor sueldo es: %s y su sueldo es de %g\n", trabjs[i_menor].nombre);
+        printf("El empleado con mayor sueldo es: %s y su sueldo es de %g\n", trabjs[i_mayor].nombre);
         break;
     }
 
