@@ -552,8 +552,8 @@ void consultar()
             }
         }
 
-        printf("El empleado con menor sueldo es: %s y su sueldo es de %g\n", trabjs[i_menor].nombre);
-        printf("El empleado con mayor sueldo es: %s y su sueldo es de %g\n", trabjs[i_mayor].nombre);
+        printf("El empleado con menor sueldo es: %s y su sueldo es de %g\n", trabjs[i_menor].nombre, trabjs[i_menor].sueldo);
+        printf("El empleado con mayor sueldo es: %s y su sueldo es de %g\n", trabjs[i_mayor].nombre, trabjs[i_mayor].sueldo);
         break;
     }
 
