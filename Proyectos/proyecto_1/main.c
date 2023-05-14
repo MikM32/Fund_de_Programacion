@@ -535,8 +535,10 @@ void consultar()
         break;
     //Trabajadores de mayor y menor sueldo
     case 'd':
-        men_sueldo = trabjs[0].sueldo;
-        may_sueldo = trabjs[0].sueldo;
+        i_mayor = 0;
+        i_menor = 0;
+        men_sueldo = trabjs[i_menor].sueldo;
+        may_sueldo = trabjs[i_mayor].sueldo;
 
         for(int i=0; i<n; i++)
         {
