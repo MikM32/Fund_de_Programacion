@@ -331,7 +331,7 @@ void print_trbj(Trabajador* trbj)
 }
 
 //Verifica si un trabajador existe en el archivo especificado por arch a partir de su cedula
-// ,si existe, la funcion retorna el indice en el cual esta ubicado en el archivo, sino 0
+// ,si existe, la funcion retorna el indice en el cual esta ubicado en el archivo, sino -1
 int trabj_exist(char* arch, int ci)
 {
     Trabajador* trbjs;
