@@ -1,6 +1,8 @@
 /*
-Integrantes:    Miguel Matute 30.733.549
-                Diego Arias
+Autores:    Miguel Matute 30.733.549
+            Diego Arias 31.540.642
+
+Proyecto abril 2023 (primer proyecto)
 
 */
 #include <stdio.h>
