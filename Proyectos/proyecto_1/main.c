@@ -26,7 +26,7 @@ typedef struct
 int fcontar_char(char* arch, char c);
 int trabj_exist(char* arch, int ci);
 void cls_str(char* str);
-void fformat_espacios(FILE*fp, char* str, int size);
+//void fformat_espacios(FILE*fp, char* str, int size);
 void leer_arch(char* arch, char* cont);
 void fleer_trbj(FILE* fp, Trabajador* trbj);
 void leer_trbj(Trabajador* trbj);
@@ -49,11 +49,11 @@ int main()
     int op, salir=0;
 
     printf("\t\tFUTURE. C.A.\n\n");
-    printf("1.-Ingresar / 2.-Consultar / 3.- Modificar / 4.- Eliminar / 5.- Salir\n\n");
+    
 
     while(!salir)
     {
-
+        printf("1.-Ingresar / 2.-Consultar / 3.- Modificar / 4.- Eliminar / 5.- Salir\n\n");
         scanf("%d",&op);
         switch(op)
         {
@@ -108,13 +108,13 @@ int fcontar_char(char* arch, char c)
 // Esta funcion escribe en un archivo dado por fp
 // la cantidad de espacios en blanco equivalentes a la cantidad de casillas vacias de
 // el array de caracteres str
-void fformat_espacios(FILE* fp, char* str, int size)
+/*void fformat_espacios(FILE* fp, char* str, int size)
 {
     for(int i=strlen(str); i<size; i++)
     {
         putc(' ', fp);
     }
-}
+}*/
 
 // Esta funcion lee un tipo de dato trabajador de un archivo dado por fp
 void fleer_trbj(FILE* fp, Trabajador* trbj)
@@ -217,11 +217,8 @@ void registrar(char* arch, Trabajador* trbj, int sl)
     FILE* fp = fopen(arch, "a");
 
     fprintf(fp, "%d ",trbj->ci);
-    //fputc(' ',fp);
-    fputs(trbj->nombre,fp);
-    fformat_espacios(fp, trbj->nombre, 10); //rellena los espacios faltantes con espacios
-    fputs(trbj->apellido,fp);
-    fformat_espacios(fp, trbj->apellido, 10);
+    fprintf(fp, "%s ", trbj->nombre);
+    fprintf(fp, "%s ", trbj->apellido);
     switch(trbj->dep)
     {
     case 1:
@@ -265,9 +262,8 @@ void registrar(char* arch, Trabajador* trbj, int sl)
         break;
     }
     //fprintf(fp,"%s%f\n", trbj->fech_ingreso, trbj->sueldo);
-    fputs(trbj->fech_ingreso,fp);
-    fformat_espacios(fp, trbj->fech_ingreso, 10);
-    fprintf(fp, "%f",trbj->sueldo);
+    fprintf(fp, "%s ", trbj->fech_ingreso);
+    fprintf(fp, "%f ",trbj->sueldo);
     if(sl)
     {
         fputc('\n',fp);
@@ -291,7 +287,7 @@ void print_trbj(Trabajador* trbj)
         printf("Consultorio\n");
         break;
     case 3:
-        printf("Dise�o\n");
+        printf("Diseño\n");
         break;
     case 4:
         printf("Produccion\n");
@@ -316,7 +312,7 @@ void print_trbj(Trabajador* trbj)
         printf("Analista\n");
         break;
     case 4:
-        printf("Dise�ador\n");
+        printf("Diseñador\n");
         break;
     case 5:
         printf("Desarrollador\n");
