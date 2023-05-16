@@ -34,6 +34,7 @@ void registrar(char* arch, Trabajador* trbj, int sl);
 void print_trbj(Trabajador* trbj);
 void print_dep(int dep);
 void print_cargo(int cargo);
+void ordenar_trabjs(Trabajador* trabjs, int num);
 
 //Modulo 1
 void ingresar();
@@ -48,11 +49,9 @@ int main()
 {
     int op, salir=0;
 
-    printf("\t\tFUTURE. C.A.\n\n");
-    
-
-    while(!salir)
+    do
     {
+        printf("\t\tFUTURE. C.A.\n\n");
         printf("1.-Ingresar / 2.-Consultar / 3.- Modificar / 4.- Eliminar / 5.- Salir\n\n");
         scanf("%d",&op);
         switch(op)
@@ -74,7 +73,8 @@ int main()
             break;
 
         }
-    }
+        
+    }while(!salir);
 
 }
 
@@ -356,6 +356,24 @@ int trabj_exist(char* arch, int ci)
     return -1;
 }
 
+// Usa el algoritmo burbuja para ordenar un vector de trabajadores de menor a mayor sueldo
+void ordenar_trabjs(Trabajador* trabjs, int num)
+{
+    Trabajador aux;
+    for(int i=0; i<num; i++)
+        {
+            for(int j=0; j<num-1; j++)
+            {
+                if(trabjs[j].sueldo > trabjs[j+1].sueldo)
+                {
+                    aux = trabjs[j];
+                    trabjs[j] = trabjs[j+1];
+                    trabjs[j+1]= aux;
+                }
+            }
+        }
+}
+
 //Imprime el nombre del departamente asociado al codigo dado por el parametro dep
 void print_dep(int dep)
 {
@@ -442,11 +460,8 @@ void consultar()
     int n= fcontar_char(REGISTRO, '\n');
     trabjs = malloc(n*sizeof(Trabajador));
     FILE* fp;
-    int aux=0, index = -1, cont=0, i_mayor, i_menor;
-    float men_sueldo=0, may_sueldo=0;
+    int aux=0, index = -1, cont=0;
     float sueldo_devtotal = 0;
-
-    system("cls");
 
     //Lee todos los trabajadores de trabajadores.in y los guarda en el vector dinamico trabjs
     fp = fopen(REGISTRO, "r");
@@ -531,27 +546,17 @@ void consultar()
         break;
     //Trabajadores de mayor y menor sueldo
     case 'd':
-        i_mayor = 0;
-        i_menor = 0;
-        men_sueldo = trabjs[i_menor].sueldo;
-        may_sueldo = trabjs[i_mayor].sueldo;
 
-        for(int i=0; i<n; i++)
+        ordenar_trabjs(trabjs, n);
+
+        printf("Trabajadores de mayor a menor sueldo:\n");
+        for(int i=n-1; i>-1; i--)
         {
-            if(trabjs[i].sueldo < men_sueldo)
-            {
-                men_sueldo = trabjs[i].sueldo;
-                i_menor = i;
-            }
-            else if(trabjs[i].sueldo > may_sueldo)
-            {
-                may_sueldo = trabjs[i].sueldo;
-                i_mayor = i;
-            }
+            print_trbj(&trabjs[i]);
         }
 
-        printf("El empleado con menor sueldo es: %s y su sueldo es de %g\n", trabjs[i_menor].nombre, trabjs[i_menor].sueldo);
-        printf("El empleado con mayor sueldo es: %s y su sueldo es de %g\n", trabjs[i_mayor].nombre, trabjs[i_mayor].sueldo);
+        printf("El empleado con menor sueldo es: %s y su sueldo es de %g\n", trabjs[0].nombre, trabjs[0].sueldo);
+        printf("El empleado con mayor sueldo es: %s y su sueldo es de %g\n", trabjs[n-1].nombre, trabjs[n-1].sueldo);
         break;
     }
 
