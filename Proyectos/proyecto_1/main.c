@@ -557,8 +557,10 @@ void consultar()
         {
             print_trbj(&trabjs[i]);
         }*/
-        printf("El empleado con mayor sueldo es: %s y su sueldo es de %g\n", trabjs[n-1].nombre, trabjs[n-1].sueldo);
-        printf("El empleado con menor sueldo es: %s y su sueldo es de %g\n", trabjs[0].nombre, trabjs[0].sueldo);
+        printf("El trabajador de mayor sueldo es:\n");
+        print_trbj(&trabjs[n-1]);
+        printf("El trabajador de menor sueldo es:\n");
+        print_trbj(&trabjs[0]);
         break;
     }
 
