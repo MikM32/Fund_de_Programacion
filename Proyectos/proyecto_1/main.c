@@ -656,68 +656,70 @@ void eliminar()
     printf("Ingrese la cedula de identidad del trabajador a eliminar: ");
     scanf("%d", &ci);
 
-    printf("¿Esta seguro de que desea eliminar a este trabajador? 1:Si/0:No: ");
-    scanf("%d", &op);
+    index = trabj_exist(REGISTRO, ci);
 
-    if(op)
+    if(index < 0)
     {
-
-        index = trabj_exist(REGISTRO, ci);
-
-        if(index < 0)
-        {
             printf("La CI ingresada no coincide con la de ningun trabajador\n");
+    }else
+    {
+        print_trbj(&trabjs[index]);
+
+        printf("¿Esta seguro de que desea eliminar a este trabajador? (1: Si/ 0: No ):");
+        scanf("%d", &op);
+
+
+        if(op)
+        {
+                printf("Ingrese la fecha actual: ");
+                scanf("%s", fech);
+                printf("Ingrese el motivo de eliminacion(1:Traslado,2:Renuncia,3:Despido,4:Otro):");
+                scanf("%d", &mot);
+
+                eliminado = trabjs[index];
+
+                for(int i=index; i<n; i++)
+                {
+                        trabjs[i] = trabjs[i+1];
+                }
+
+                //Se sobreescribe todo el archivo trabajadores.in y se deja en blanco
+                FILE* fp = fopen(REGISTRO, "w");
+                fprintf(fp,"\0");
+                fclose(fp);
+
+                for(int i=0; i<n-1;i++)
+                {
+                    registrar(REGISTRO, &trabjs[i], 1);
+                }
+
+                //Registra el trabajador eliminado en extrabajadores.txt sin salto de linea al final
+                // , esto para poder anexar los dos datos adicionales ( motivo de eliminacion y fecha de eliminacion)
+                registrar("extrabajadores.txt", &eliminado, 0);
+                fp = fopen("extrabajadores.txt","a");
+                switch(mot)
+                {
+                case 1:
+                    fprintf(fp," Traslado ");
+                    break;
+                case 2:
+                    fprintf(fp, " Renuncia ");
+                    break;
+                case 3:
+                    fprintf(fp, " Despido ");
+                    break;
+                case 4:
+                    fprintf(fp, " Otro ");
+                    break;
+                }
+                fprintf(fp, "%s\n", fech);
+                fclose(fp);
+            
         }
         else
         {
-            printf("Ingrese la fecha actual: ");
-            scanf("%s", fech);
-            printf("Ingrese el motivo de eliminacion(1:Traslado,2:Renuncia,3:Despido,4:Otro):");
-            scanf("%d", &mot);
-
-            eliminado = trabjs[index];
-
-            for(int i=index; i<n; i++)
-            {
-                    trabjs[i] = trabjs[i+1];
-            }
-
-            //Se sobreescribe todo el archivo trabajadores.in y se deja en blanco
-            FILE* fp = fopen(REGISTRO, "w");
-            fprintf(fp,"\0");
-            fclose(fp);
-
-            for(int i=0; i<n-1;i++)
-            {
-                registrar(REGISTRO, &trabjs[i], 1);
-            }
-
-            //Registra el trabajador eliminado en extrabajadores.txt sin salto de linea al final
-            // , esto para poder anexar los dos datos adicionales ( motivo de eliminacion y fecha de eliminacion)
-            registrar("extrabajadores.txt", &eliminado, 0);
-            fp = fopen("extrabajadores.txt","a");
-            switch(mot)
-            {
-            case 1:
-                fprintf(fp," Traslado ");
-                break;
-            case 2:
-                fprintf(fp, " Renuncia ");
-                break;
-            case 3:
-                fprintf(fp, " Despido ");
-                break;
-            case 4:
-                fprintf(fp, " Otro ");
-                break;
-            }
-            fprintf(fp, "%s\n", fech);
-            fclose(fp);
+            printf("Operacion cancelada\n");
         }
-    }
-    else
-    {
-        printf("Operacion cancelada\n");
     }
 
 }
