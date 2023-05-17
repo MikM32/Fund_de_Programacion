@@ -56,6 +56,7 @@ int main()
         printf("\t\tFUTURE. C.A.\n\n");
         printf("1.-Ingresar / 2.-Consultar / 3.- Modificar / 4.- Eliminar / 5.- Salir\n\n");
         scanf("%d",&op);
+        fflush(stdin);
         switch(op)
         {
         case 1:
