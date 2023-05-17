@@ -626,8 +626,9 @@ void modificar()
             scanf("%f", &trabjs[index].sueldo);
             break;
         }
-        fp = fopen(REGISTRO, "w");
-        fprintf(fp," ");
+        //Se sobreescribe todo el archivo trabajadores.in y se deja en blanco
+        FILE* fp = fopen(REGISTRO, "w");
+        fprintf(fp,"\0");
         fclose(fp);
 
         for(int i=0;i<n;i++)
