@@ -132,7 +132,7 @@ void fleer_trbj(FILE* fp, Trabajador* trbj)
     {
         trbj->dep = 1;
     }
-    else if(strstr(buffer, "Consultorio")!=NULL)
+    else if(strstr(buffer, "Consultoria")!=NULL)
     {
         trbj->dep = 2;
     }
@@ -227,7 +227,7 @@ void registrar(char* arch, Trabajador* trbj, int sl)
         fputs("RHH           ",fp);
         break;
     case 2:
-        fputs("Consultorio   ",fp);
+        fputs("Consultoria   ",fp);
         break;
     case 3:
         fputs("Dise�o        ",fp);
@@ -286,7 +286,7 @@ void print_trbj(Trabajador* trbj)
         printf("RHH\n");
         break;
     case 2:
-        printf("Consultorio\n");
+        printf("Consultoria\n");
         break;
     case 3:
         printf("Diseño\n");
@@ -385,7 +385,7 @@ void print_dep(int dep)
         printf("RHH");
         break;
     case 2:
-        printf("Consultorio");
+        printf("Consultoria");
         break;
     case 3:
         printf("Dise�o");
@@ -428,7 +428,7 @@ void print_cargo(int cargo)
         }
 }
 
-
+//Primer modulo
 void ingresar()
 {
     int n = 0;
@@ -456,6 +456,7 @@ void ingresar()
 
 }
 
+//Segundo modulo
 void consultar()
 {
     Trabajador* trabjs;
@@ -498,7 +499,7 @@ void consultar()
     //Consulta por departamento
     case 'b':
         printf("Ingrese el codigo del departamento.\n");
-        printf("(1:RHH, 2:Consultorio, 3:Dise�o, 4:Produccion, 5:Calidad, 6:Distribucion): ");
+        printf("(1:RHH, 2:Consultoria, 3:Dise�o, 4:Produccion, 5:Calidad, 6:Distribucion): ");
 
         do{
             scanf("%d", &aux);
@@ -550,15 +551,14 @@ void consultar()
     case 'd':
 
         ordenar_trabjs(trabjs, n);
-
+        /*
         printf("Trabajadores de mayor a menor sueldo:\n");
         for(int i=n-1; i>-1; i--)
         {
             print_trbj(&trabjs[i]);
-        }
-
-        printf("El empleado con menor sueldo es: %s y su sueldo es de %g\n", trabjs[0].nombre, trabjs[0].sueldo);
+        }*/
         printf("El empleado con mayor sueldo es: %s y su sueldo es de %g\n", trabjs[n-1].nombre, trabjs[n-1].sueldo);
+        printf("El empleado con menor sueldo es: %s y su sueldo es de %g\n", trabjs[0].nombre, trabjs[0].sueldo);
         break;
     }
 

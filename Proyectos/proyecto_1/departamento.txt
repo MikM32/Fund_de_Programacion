@@ -1,3 +1,3 @@
 12345678 prueba1 ald RHH           Supervisor    1/1/2023 100.000000 
-34127856 prueba3 perez Produccion    Analista      1/2/2020 340.000000 
+56781234 prueba2 manzano RHH           Desarrollador 2/4/2012 200.000000 
 78563412 prueba4 reyes RHH           Auditor       1/5/2017 120.000000 
